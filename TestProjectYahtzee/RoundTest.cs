@@ -16,7 +16,7 @@ public class RoundTest
 
         Round.PlayAllRound();
 
-        foreach (var roundDice in Round.Dices)
+        foreach (var roundDice in Round.DicesSet.Dices)
         {
             roundDice.DiceValue.Should().BeGreaterThan(0);
         }

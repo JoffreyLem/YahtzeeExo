@@ -3,12 +3,13 @@
 public class Round
 {
     private readonly IConsole console;
-    public Dice[] Dices = new Dice[5];
+    public DicesSet DicesSet { get; set; }
 
     public Round(IConsole console)
     {
         this.console = console;
-        Array.Fill(Dices,new Dice());
+        DicesSet = new DicesSet();
+
     }
 
     public void PlayAllRound()
@@ -16,7 +17,7 @@ public class Round
         for (int i = 1; i <= 3; i++)
         {
             console.Print($"Round {i}");
-            foreach (var dice in Dices)
+            foreach (var dice in DicesSet.Dices)
             {
                 dice.Lancer();
             }
