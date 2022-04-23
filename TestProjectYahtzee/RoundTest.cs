@@ -14,7 +14,7 @@ public class RoundTest
         var console = Substitute.For<IConsole>();
         var Round = new Round(console);
 
-        Round.PlayAllRound();
+        Round.PlayRound();
 
         foreach (var roundDice in Round.DicesSet.Dices)
         {

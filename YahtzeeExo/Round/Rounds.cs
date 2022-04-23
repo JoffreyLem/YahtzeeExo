@@ -1,26 +1,24 @@
 ﻿namespace TestProjectYahtzee;
 
-public class Round
+public class Rounds
 {
     private readonly IConsole console;
-    public DicesSet DicesSet { get; set; }
+    public Round[] RoundsData = new Round[3];
 
-    public Round(IConsole console)
+    public Rounds(IConsole console)
     {
         this.console = console;
-        DicesSet = new DicesSet();
-
+        Array.Fill(RoundsData,new Round(console));
     }
 
     public void PlayAllRound()
     {
+      
+
         for (int i = 1; i <= 3; i++)
         {
             console.Print($"Round {i}");
-            foreach (var dice in DicesSet.Dices)
-            {
-                dice.Lancer();
-            }
+            RoundsData[i].PlayRound();
         }
     }
 }

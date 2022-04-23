@@ -4,16 +4,16 @@ public class Yahtzee
 {
 
     private readonly IConsole _console;
-    public Round Round { get; set; }
+    public Rounds Rounds { get; set; }
     public Yahtzee(IConsole console)
     {
         _console = console;
-        Round = new Round(_console);
+        Rounds = new Rounds(_console);
     }
 
     public void Jouer()
     {
-       Round.PlayAllRound();
+       Rounds.PlayAllRound();
     }
 
 
