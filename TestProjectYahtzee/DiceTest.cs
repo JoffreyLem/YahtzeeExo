@@ -16,7 +16,7 @@ public class DiceTest
         var desValeur = dice.DiceValue;
         desValeur.Should().BeGreaterOrEqualTo(1);
         desValeur.Should().BeLessOrEqualTo(6);
-
-
     }
+
+
 }
