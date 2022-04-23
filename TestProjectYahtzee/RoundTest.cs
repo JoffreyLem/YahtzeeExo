@@ -18,7 +18,7 @@ public class RoundTest
 
         foreach (var roundDice in Round.DicesSet.Dices)
         {
-            roundDice.DiceValue.Should().BeGreaterThan(0);
+            DiceTest.DiceValueTest(roundDice.DiceValue);
         }
 
     }

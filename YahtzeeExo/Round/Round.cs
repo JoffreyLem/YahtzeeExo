@@ -14,9 +14,12 @@ public class Round
 
     public void PlayRound()
     {
-        foreach (var dice in DicesSet.Dices)
+        for (var i = 0; i < DicesSet.Dices.Length; i++)
         {
+            var dice = DicesSet.Dices[i];
             dice.Lancer();
+            Console.WriteLine($"Valeur des {i} : {dice.DiceValue}");
         }
+
     }
 }

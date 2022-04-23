@@ -14,6 +14,11 @@ public class DiceTest
         var dice = Substitute.For<Dice>();
         dice.Lancer();
         var desValeur = dice.DiceValue;
+        DiceValueTest(desValeur);
+    }
+
+    public static void DiceValueTest(int desValeur)
+    {
         desValeur.Should().BeGreaterOrEqualTo(1);
         desValeur.Should().BeLessOrEqualTo(6);
     }
