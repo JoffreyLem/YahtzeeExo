@@ -2,8 +2,10 @@
 
 public class Dice
 {
-    public int Lancer()
+
+    public int DiceValue { get; set; }
+    public void Lancer()
     {
-        return new Random().Next(1,6); 
+        DiceValue= new Random().Next(1,6); 
     }
 }
