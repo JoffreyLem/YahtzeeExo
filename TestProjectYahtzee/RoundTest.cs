@@ -1,4 +1,6 @@
-﻿using FluentAssertions;
+﻿using System;
+using System.IO;
+using FluentAssertions;
 using NSubstitute;
 using NUnit.Framework;
 
@@ -21,5 +23,16 @@ public class RoundTest
             DiceTest.DiceValueTest(roundDice.DiceValue);
         }
 
+    }
+
+    [Test]
+    public void KeepDiceAfterRound(params int[] dicesToKeep)
+    {
+        var console = Substitute.For<IConsole>();
+        var Round = new Round(console);
+        var sr = new StringReader("1");
+        Console.SetIn(sr);
+        Round.PlayRound();
+    
     }
 }

@@ -2,10 +2,13 @@
 
 public class DicesSet
 {
-    public Dice[] Dices = new Dice[5];
+    public List<Dice> Dices;
+    public List<Dice> DicesKeeped;
 
     public DicesSet()
     {
-        Array.Fill(Dices,new Dice());
+        Dices  = new List<Dice>(Enumerable.Repeat(new Dice(), 5).ToList());
+        DicesKeeped = new List<Dice>();
+
     }
 }
