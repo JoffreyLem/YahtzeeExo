@@ -18,7 +18,7 @@ public class Round
         {
             var dice = DicesSet.Dices[i];
             dice.Lancer();
-            Console.WriteLine($"Valeur des {i} : {dice.DiceValue}");
+            Console.WriteLine($"Valeur des {i+1} : {dice.DiceValue}");
            
         }
         KeepDice();
@@ -27,14 +27,26 @@ public class Round
     public void KeepDice()
     {
         Console.WriteLine("Dès à garder pour prochain round, entrer une liste de INT avec virgule");
-        var str= Console.ReadLine();
+        var str = Console.ReadLine();
         var indexs = str?.Split(",").Select(int.Parse).ToList();
-        indexs?.ForEach(x=>Console.WriteLine($"Dès à garder {x}"));
+        indexs?.ForEach(x => Console.WriteLine($"Dès à garder {x+1}"));
+
+        List<Dice> SelectedToRemove = new List<Dice>();
+
+
+
         if (indexs != null)
-            foreach (var i in indexs)
+        {
+            for (var i = 0; i < indexs.Count; i++)
             {
-                DicesSet.DicesKeeped.Add(DicesSet.Dices[i]);
-                DicesSet.Dices.RemoveAt(i);
+                SelectedToRemove.Add(DicesSet.Dices.Where((x,ind)=>ind==i).First());
             }
+
+            foreach (var dice in SelectedToRemove)
+            {
+                DicesSet.DicesKeeped.Add(dice);
+                DicesSet.Dices.Remove(dice);
+            }
+        }
     }
 }
