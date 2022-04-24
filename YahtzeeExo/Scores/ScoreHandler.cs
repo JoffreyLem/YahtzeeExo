@@ -3,9 +3,9 @@
 public class ScoreHandler
 {
 
-    public Dictionary<Scores, int> HandleDicesForScore(List<Dice> dices)
+    public Dictionary<ScoresEnum, int> HandleDicesForScore(List<Dice> dices)
     {
-        Dictionary<Scores, int> dataScore = new Dictionary<Scores, int>();
+        Dictionary<ScoresEnum, int> dataScore = new Dictionary<ScoresEnum, int>();
 
         var data1 = Handler1(dices);
 
@@ -24,9 +24,9 @@ public class ScoreHandler
         return dataScore;
     }
 
-    private Dictionary<Scores, int> Handler1(List<Dice> dices)
+    private Dictionary<ScoresEnum, int> Handler1(List<Dice> dices)
     {
-        Dictionary<Scores,int> dataScore = new Dictionary<Scores,int>();
+        Dictionary<ScoresEnum,int> dataScore = new Dictionary<ScoresEnum,int>();
 
         var data = dices.GroupBy(x => x.DiceValue).ToList();
         foreach (var diceData in data)
@@ -34,7 +34,7 @@ public class ScoreHandler
             var scoreName = GetScoresBase(diceData.Key);
             if (scoreName != null)
             {
-               var name = (Scores)scoreName;
+               var name = (ScoresEnum)scoreName;
                dataScore.Add(name, diceData.Sum(x => x.DiceValue));
             }
             
@@ -42,23 +42,23 @@ public class ScoreHandler
         return dataScore;
     }
 
-    private Dictionary<Scores, int> Handler2(List<Dice> dices)
+    private Dictionary<ScoresEnum, int> Handler2(List<Dice> dices)
     {
-        Dictionary<Scores, int> dataScore = new Dictionary<Scores, int>();
+        Dictionary<ScoresEnum, int> dataScore = new Dictionary<ScoresEnum, int>();
 
         var data = dices.GroupBy(x => x.DiceValue).ToList();
 
         if(data.Any(x=>x.Count()==3))
         {
-            dataScore.Add(Scores.ThreeOfAKind,dices.Sum(x=>x.DiceValue));
+            dataScore.Add(ScoresEnum.ThreeOfAKind,dices.Sum(x=>x.DiceValue));
         }
         if (data.Any(x => x.Count() == 4))
         {
-            dataScore.Add(Scores.FourOfAKind, dices.Sum(x => x.DiceValue));
+            dataScore.Add(ScoresEnum.FourOfAKind, dices.Sum(x => x.DiceValue));
         }
         if (data.Count==2 && data.All(x=>x.Count()>1))
         {
-            dataScore.Add(Scores.FullHouse, 25);
+            dataScore.Add(ScoresEnum.FullHouse, 25);
         }
 
         var orderedData = dices.OrderBy(x => x.DiceValue).ToList();
@@ -82,17 +82,17 @@ public class ScoreHandler
 
         if (sequentialTest.Count == 4)
         {
-            dataScore.Add(Scores.SmallStraight,30);
+            dataScore.Add(ScoresEnum.SmallStraight,30);
         }
 
         if (sequentialTest.Count == 5)
         {
-            dataScore.Add(Scores.LargeStraight,40);
+            dataScore.Add(ScoresEnum.LargeStraight,40);
         }
 
         if (dices.Select(x=>x.DiceValue).Distinct().Count() == 1)
         {
-            dataScore.Add(Scores.Yathzee,50);
+            dataScore.Add(ScoresEnum.Yathzee,50);
         }
 
 
@@ -102,22 +102,22 @@ public class ScoreHandler
     }
 
 
-    private Scores? GetScoresBase(int i)
+    private ScoresEnum? GetScoresBase(int i)
     {
         switch (i)
         {
             case 1:
-                return Scores.Ones;
+                return ScoresEnum.Ones;
             case 2:
-                return Scores.Twos;
+                return ScoresEnum.Twos;
             case 3:
-                return Scores.Threes;
+                return ScoresEnum.Threes;
             case 4:
-                return Scores.Fours;
+                return ScoresEnum.Fours;
             case 5:
-                return Scores.Fives;
+                return ScoresEnum.Fives;
             case 6:
-                return Scores.Sixes;
+                return ScoresEnum.Sixes;
             default:
                 return null;
         }

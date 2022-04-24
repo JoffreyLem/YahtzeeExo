@@ -1,6 +1,6 @@
 ﻿namespace TestProjectYahtzee;
 
-public enum Scores
+public enum ScoresEnum
 {
     Ones,
     Twos,

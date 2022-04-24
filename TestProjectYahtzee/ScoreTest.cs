@@ -32,20 +32,20 @@ public class ScoreTest
     }
 
     [Test]
-    [TestCase(Scores.Ones,1,1,3,4,5)]
-    [TestCase(Scores.Twos, 1, 2, 2, 4, 5)]
+    [TestCase(ScoresEnum.Ones,1,1,3,4,5)]
+    [TestCase(ScoresEnum.Twos, 1, 2, 2, 4, 5)]
 
-    [TestCase(Scores.Threes, 1, 2, 3, 3, 5)]
-    [TestCase(Scores.Fours, 1, 2, 3, 4, 4)]
-    [TestCase(Scores.Fives, 1, 2, 3, 4, 5)]
-    [TestCase(Scores.Sixes, 1, 2, 3, 6, 6)]
-    [TestCase(Scores.ThreeOfAKind, 1, 2, 5, 5, 5)]
-    [TestCase(Scores.FourOfAKind, 2, 5, 5, 5, 5)]
-    [TestCase(Scores.FullHouse, 1, 1, 1, 6, 6)]
-    [TestCase(Scores.SmallStraight, 1, 2, 3, 4, 6)]
-    [TestCase(Scores.LargeStraight, 1, 2, 3, 4, 5)]
-    [TestCase(Scores.Yathzee, 5, 5, 5, 5, 5)]
-    public void GestionScorePossibles(Scores score,params int[] diceValues)
+    [TestCase(ScoresEnum.Threes, 1, 2, 3, 3, 5)]
+    [TestCase(ScoresEnum.Fours, 1, 2, 3, 4, 4)]
+    [TestCase(ScoresEnum.Fives, 1, 2, 3, 4, 5)]
+    [TestCase(ScoresEnum.Sixes, 1, 2, 3, 6, 6)]
+    [TestCase(ScoresEnum.ThreeOfAKind, 1, 2, 5, 5, 5)]
+    [TestCase(ScoresEnum.FourOfAKind, 2, 5, 5, 5, 5)]
+    [TestCase(ScoresEnum.FullHouse, 1, 1, 1, 6, 6)]
+    [TestCase(ScoresEnum.SmallStraight, 1, 2, 3, 4, 6)]
+    [TestCase(ScoresEnum.LargeStraight, 1, 2, 3, 4, 5)]
+    [TestCase(ScoresEnum.Yathzee, 5, 5, 5, 5, 5)]
+    public void GestionScorePossibles(ScoresEnum scoreEnum,params int[] diceValues)
     {
 
         var console = TestHelper.GetIconsole();
@@ -63,7 +63,7 @@ public class ScoreTest
 
         var listScoresPossible = rounds.HandlePossibleScore();
 
-        listScoresPossible.Should().ContainKey(score);
+        listScoresPossible.Should().ContainKey(scoreEnum);
 
     }
 
