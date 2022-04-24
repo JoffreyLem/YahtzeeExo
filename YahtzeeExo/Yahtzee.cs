@@ -13,7 +13,28 @@ public class Yahtzee
 
     public void Jouer()
     {
-       Rounds.PlayAllRound();
+
+        do
+        {
+            Rounds.PlayAllRound();
+        } while (HandleScorePartit(Rounds.ScorePlayer.ScoresData));
+
+
+    }
+
+    public bool HandleScorePartit(Dictionary<ScoresEnum, int> scorePlayerScoresData)
+    {
+        var enumValue = Enum.GetValues(typeof(ScoresEnum));
+        foreach (var o in enumValue)
+        {
+            if (!scorePlayerScoresData.ContainsKey((ScoresEnum)o))
+            {
+                return true;
+            }
+
+           
+        }
+        return false;
     }
 
 

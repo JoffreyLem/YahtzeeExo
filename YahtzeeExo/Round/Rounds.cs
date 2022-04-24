@@ -23,6 +23,13 @@ public class Rounds
 
     public void PlayAllRound()
     {
+        Console.WriteLine("--------------------------------------");
+        Console.WriteLine("Scores actuel de l'utilisateur");
+        ScorePlayer.PrintScore();
+        Console.WriteLine("");
+        Console.WriteLine("--------------------------------------");
+        Console.WriteLine("");
+
 
         for (int i = 1; i <= 3; i++)
         {
@@ -38,8 +45,8 @@ public class Rounds
         Console.WriteLine("");
 
 
-        HandlePossibleScore();
-        
+       var dataScorePossible =  HandlePossibleScore();
+        CalculateScore(dataScorePossible);
         
     }
 
@@ -47,25 +54,29 @@ public class Rounds
     {
         var dataScore =  ScoreHandler.HandleDicesForScore(Dices);
 
-        Console.WriteLine("Scores actuel de l'utilisateur");
-        Console.WriteLine($"Score global : {ScorePlayer.GlobalScore}");
-        foreach (var keyValuePair in ScorePlayer.ScoresData)
-        {
-            Console.WriteLine(keyValuePair.Key.ToString());
-        }
-        Console.WriteLine("");
+    
 
-        var choosableData = dataScore.Where(x => ScorePlayer.ScoresData.All(y => y.Key != x.Key)).ToDictionary(x=>x.Key,x=>x.Value);
+    
+
+        return dataScore;
+    }
+
+    public void CalculateScore(Dictionary<ScoresEnum, int> possibleScore)
+    {
+        Console.WriteLine("Scores actuel de l'utilisateur");
+        ScorePlayer.PrintScore();
+
+        var choosableData = possibleScore.Where(x => ScorePlayer.ScoresData.All(y => y.Key != x.Key)).ToDictionary(x => x.Key, x => x.Value);
 
         Console.WriteLine("Scores possibles\n");
         Console.WriteLine("");
 
-     
+
 
         for (var i = 0; i < choosableData.Count; i++)
         {
-       
-            Console.WriteLine($"{i+1}. {choosableData.ElementAt(i)}");
+
+            Console.WriteLine($"{i + 1}. {choosableData.ElementAt(i).Key}");
         }
 
         var str = Console.ReadLine();
@@ -74,10 +85,10 @@ public class Rounds
 
         var selectedToAdd = choosableData.ElementAt(indexSelected);
 
-        ScorePlayer.ScoresData.Add(selectedToAdd.Key,selectedToAdd.Value);
+        ScorePlayer.ScoresData.Add(selectedToAdd.Key, selectedToAdd.Value);
 
-    
-
-        return dataScore;
+        Console.WriteLine("");
+        Console.WriteLine("Nouveau score utilisateur");
+        ScorePlayer.PrintScore();
     }
 }

@@ -95,7 +95,7 @@ public class ScoreHandler
             dataScore.Add(ScoresEnum.Yathzee,50);
         }
 
-
+        dataScore.Add(ScoresEnum.Chance,dices.Sum(x=>x.DiceValue));
         
 
         return dataScore;

@@ -14,4 +14,14 @@ public class ScorePlayer
     {
         ScoresData = new Dictionary<ScoresEnum, int>();
     }
+
+    public void PrintScore()
+    {
+        Console.WriteLine($"Score global : {GlobalScore}");
+        foreach (var keyValuePair in ScoresData)
+        {
+            Console.WriteLine(keyValuePair.Key.ToString());
+        }
+        Console.WriteLine("");
+    }
 }

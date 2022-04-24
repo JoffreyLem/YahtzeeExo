@@ -67,4 +67,35 @@ public class ScoreTest
 
     }
 
+    [Test]
+    [TestCase( 1, 2, 3, 4, 5)]
+    [TestCase( 1, 2, 3, 3, 5)]
+    [TestCase( 1, 2, 3, 4, 4)]
+    [TestCase( 1, 2, 3, 4, 5)]
+    [TestCase( 1, 2, 3, 6, 6)]
+    public void CalculerScoreForPlayer(params int[] diceValues)
+    {
+        var console = TestHelper.GetIconsole();
+
+        var rounds = new Rounds(console);
+        var dices = rounds.RoundsData.DicesSet.Dices;
+
+        dices[0].DiceValue = diceValues[0];
+        dices[1].DiceValue = diceValues[1];
+        dices[2].DiceValue = diceValues[2];
+        dices[3].DiceValue = diceValues[3];
+        dices[4].DiceValue = diceValues[4];
+
+        var listScoresPossible = rounds.HandlePossibleScore();
+
+        StringReader str = new StringReader("1");
+        Console.SetIn(str);
+
+        rounds.CalculateScore(listScoresPossible);
+
+        var score = rounds.ScorePlayer.GlobalScore;
+
+        score.Should().BeGreaterOrEqualTo(1);
+    }
+
 }
