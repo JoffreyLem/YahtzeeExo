@@ -81,6 +81,12 @@ public class Rounds
 
         var str = Console.ReadLine();
 
+        if (str == null)
+        {
+            str = "1";
+        }
+
+
         var indexSelected = int.Parse(str) - 1;
 
         var selectedToAdd = choosableData.ElementAt(indexSelected);

@@ -1,4 +1,6 @@
-﻿using NSubstitute;
+﻿using System;
+using System.IO;
+using NSubstitute;
 using NUnit.Framework;
 
 namespace TestProjectYahtzee;
@@ -12,9 +14,10 @@ public class YahtzeeTest
     {
         var console = Substitute.For<IConsole>();
         var game = new Yahtzee(console);
-     
+        StringReader sr = new StringReader("");
+        Console.SetIn(sr);
 
-        game.Jouer();
+        game.Rounds.PlayAllRound();
 
        
 
