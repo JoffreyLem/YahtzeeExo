@@ -54,7 +54,7 @@ public class ScoreHandler
         }
         if (data.Any(x => x.Count() == 4))
         {
-            dataScore.Add(Scores.ThreeOfAKind, dices.Sum(x => x.DiceValue));
+            dataScore.Add(Scores.FourOfAKind, dices.Sum(x => x.DiceValue));
         }
         if (data.Count==2 && data.All(x=>x.Count()>1))
         {
@@ -71,7 +71,7 @@ public class ScoreHandler
             }
             else
             {
-                if (x.DiceValue != orderedData[i - 1].DiceValue)
+                if (x.DiceValue != (orderedData[i - 1].DiceValue+1))
                 {
                     return false;
                 }
@@ -90,7 +90,7 @@ public class ScoreHandler
             dataScore.Add(Scores.LargeStraight,40);
         }
 
-        if (dices.Distinct().Count() == 1)
+        if (dices.Select(x=>x.DiceValue).Distinct().Count() == 1)
         {
             dataScore.Add(Scores.Yathzee,50);
         }

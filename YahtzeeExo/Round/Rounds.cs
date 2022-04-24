@@ -8,7 +8,7 @@ public class Rounds
   
     public List<Dice> Dices
     {
-        get => RoundsData.DicesSet.Dices.Concat(RoundsData.DicesSet.Dices).ToList();
+        get => RoundsData.DicesSet.Dices.Concat(RoundsData.DicesSet.DicesKeeped).ToList();
     }
 
     public Rounds(IConsole console)
