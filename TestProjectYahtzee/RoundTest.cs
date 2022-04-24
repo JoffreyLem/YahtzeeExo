@@ -39,6 +39,7 @@ public class RoundTest
     public void KeepDiceAfterRound(params int[] dicesToKeep)
     {
         var console = Substitute.For<IConsole>();
+        
         var Round = new Round(console);
         int remaning = dicesToKeep.Length;
         StringReader sr;
