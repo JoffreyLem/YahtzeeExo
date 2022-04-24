@@ -12,10 +12,10 @@ public class Dice
         DiceValue = 0;
     }
 
-    public int DiceValue { get; set; } = 0;
+    public int DiceValue { get; set; } 
     public void Lancer()
     {
-     
-        DiceValue= new Random().Next(1,6); 
+        Random r = new Random();
+        DiceValue= r.Next(1,6); 
     }
 }

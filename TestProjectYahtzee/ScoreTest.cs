@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 using FluentAssertions;
 using NUnit.Framework;
 
@@ -14,10 +15,14 @@ public class ScoreTest
     {
 
         var console = TestHelper.GetIconsole();
+       
         var rounds = new Rounds(console);
-        StringReader sr = new StringReader("");
 
-         rounds.PlayAllRound();
+        foreach (var dicesSetDice in rounds.RoundsData.DicesSet.Dices)
+        {
+            dicesSetDice.DiceValue = new Random().Next(1, 6);
+        }
+        
 
        var listScoresPossible=  rounds.HandlePossibleScore();
 

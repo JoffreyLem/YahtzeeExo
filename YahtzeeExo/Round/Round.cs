@@ -19,14 +19,12 @@ public class Round
         DicesSet.DicesKeeped.ForEach(x=>{Console.Write($"{x.DiceValue} ");});
         Console.WriteLine("");
         Console.WriteLine("Dès lancées");
-        for (var i = 0; i < DicesSet.Dices.Count; i++)
+        foreach (var dicesSetDice in DicesSet.Dices)
         {
-            var dice = DicesSet.Dices[i];
-            dice.Lancer();
-            
-            Console.WriteLine($"Valeur des {i+1} : {dice.DiceValue}");
-           
+            dicesSetDice.Lancer();
+            Console.WriteLine($"Valeur des {DicesSet.Dices.IndexOf(dicesSetDice) + 1} : {dicesSetDice.DiceValue}");
         }
+     
         KeepDice();
     }
 
@@ -39,15 +37,17 @@ public class Round
         str = str == "" ? null : str;
 
         var indexs = str?.Split(",").Select(x=>int.Parse(x)-1).ToList();
-        Console.WriteLine("");
-        indexs?.ForEach(x => Console.WriteLine($"Dès à garder {DicesSet.Dices[x].DiceValue}"));
+        
 
-        List<Dice> SelectedToRemove = new List<Dice>();
+ 
 
 
 
         if (indexs != null)
         {
+            Console.WriteLine("");
+            indexs?.ForEach(x => Console.WriteLine($"Dès à garder {DicesSet.Dices[x].DiceValue}"));
+            List<Dice> SelectedToRemove = new List<Dice>();
             for (var i = 0; i < indexs.Count; i++)
             {
                 SelectedToRemove.Add(DicesSet.Dices.Where((x,ind)=>ind==indexs[i]).First());

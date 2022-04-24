@@ -3,17 +3,19 @@
 public class Rounds
 {
     private readonly IConsole console;
-    public Round RoundsData;
-
+    public Round RoundsData { get; set; }
+    public ScoreHandler ScoreHandler { get; set; }
+  
     public List<Dice> Dices
     {
-        get => RoundsData.DicesSet.Dices.Concat(RoundsData.DicesSet.DicesKeeped).ToList();
+        get => RoundsData.DicesSet.Dices.Concat(RoundsData.DicesSet.Dices).ToList();
     }
 
     public Rounds(IConsole console)
     {
         this.console = console;
         RoundsData = new Round(console);
+        ScoreHandler = new ScoreHandler();
     }
 
     public void PlayAllRound()
@@ -26,16 +28,25 @@ public class Rounds
             console.Print($"Round {i}");
             RoundsData.PlayRound();
         }
+        Console.WriteLine("");
 
-        List<Dice> AllDices = new List<Dice>();
-        AllDices.AddRange(RoundsData.DicesSet.Dices);
-        AllDices.AddRange(RoundsData.DicesSet.DicesKeeped);
+        
+     
+
+        HandlePossibleScore();
+        
     }
 
-    public List<Scores> HandlePossibleScore()
+    public Dictionary<Scores,int> HandlePossibleScore()
     {
+        var dataScore =  ScoreHandler.HandleDicesForScore(Dices);
+        Console.WriteLine("Scores possibles\n");
+        foreach (var keyValuePair in dataScore)
+        {
+    
+            Console.WriteLine(keyValuePair.Key.ToString());
+        }
 
-        return null;
-
+        return dataScore;
     }
 }

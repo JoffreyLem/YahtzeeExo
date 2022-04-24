@@ -7,7 +7,7 @@ public class DicesSet
 
     public DicesSet()
     {
-        Dices  = new List<Dice>(Enumerable.Repeat(new Dice(), 5).ToList());
+        Dices = new List<Dice>() {new Dice(0),new Dice(0),new Dice(0),new Dice(0),new Dice(0)};
         DicesKeeped = new List<Dice>();
 
     }
