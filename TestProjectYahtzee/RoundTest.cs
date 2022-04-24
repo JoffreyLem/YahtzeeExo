@@ -49,7 +49,7 @@ public class RoundTest
         }
         else
         {
-            var ArrayStr = dicesToKeep.Select(x => (x-1).ToString());
+            var ArrayStr = dicesToKeep.Select(x => (x).ToString());
             var strConverted = string.Join(",", ArrayStr);
             sr = new StringReader(strConverted);
         }
